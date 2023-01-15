@@ -13,6 +13,8 @@ RSpec.describe 'bulk items show page' do
   end
 
   it 'contains a discounts quantity threshold and percent discount' do
-
+    expect(page).to have_content(@discount1.id)
+    expect(page).to have_content(@discount1.percent_discount)
+    expect(page).to have_content(@discount1.quantity_threshold)
   end
 end
