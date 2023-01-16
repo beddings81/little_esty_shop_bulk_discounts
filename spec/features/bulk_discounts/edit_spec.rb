@@ -13,17 +13,17 @@ RSpec.describe 'bulk discounts edit page' do
   end
 
   it 'contains a prepopulated from to edit a bulk discount' do
-    expect(page).to have_field("bulk_discount_percent_discount", with: 20)
+    expect(page).to have_field("bulk_discount_percent_discount", with: 20.0)
     expect(page).to have_field("bulk_discount_quantity_threshold", with: 30)
     
-    fill_in("bulk_discount_percent_discount", with: 100)
+    fill_in("bulk_discount_percent_discount", with: 100.0)
     fill_in("bulk_discount_quantity_threshold", with: 100)
 
     click_button("Update Bulk discount")
 
     expect(current_path).to eq(merchant_bulk_discount_path(@merchant1, @discount1))
     
-    expect(page).to have_content("Percent: 100%")
+    expect(page).to have_content("Percent: 100.0%")
     expect(page).to have_content("Quantity: 100 Items")
   end
 end
