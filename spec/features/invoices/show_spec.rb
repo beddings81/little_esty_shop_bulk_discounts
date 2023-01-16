@@ -102,4 +102,14 @@ RSpec.describe 'invoices show' do
     end
   end
 
+  it 'contains a link to the show page for the bulk discount that was applied' do
+    within("#applied") do
+      expect(page).to have_link("Applied Discount")
+
+      clcik_link("Applied Discount")
+
+      expect(current_path).to eq()
+    end
+  end
+
 end
