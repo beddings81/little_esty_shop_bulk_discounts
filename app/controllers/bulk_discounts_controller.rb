@@ -1,6 +1,9 @@
 class BulkDiscountsController < ApplicationController
+  
   def index
     @merchant = Merchant.find(params[:merchant_id])
+    @holidays = HolidaySearch.new.holiday_info[0..2]
+    # require 'pry'; binding.pry
   end
 
   def show
@@ -38,7 +41,6 @@ class BulkDiscountsController < ApplicationController
 
     redirect_to merchant_bulk_discount_path(@merchant, @bulk_discount)
   end
-
 
   private
 
