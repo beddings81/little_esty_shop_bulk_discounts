@@ -59,4 +59,16 @@ RSpec.describe 'bulk discounts index page' do
       expect(page).to_not have_content(@discount1.id)
     end
   end
+
+  it 'contains the next 3 upcoming US holidays' do
+    within("#holidays") do
+      expect(page).to have_content("Upcoming Holidays")
+      expect(page).to have_content("Washington's Birthday: 2023-02-20")
+      expect(page).to have_content("Good Friday: 2023-04-07")
+      expect(page).to have_content("Memorial Day: 2023-05-29")
+
+      expect("Washington's Birthday: 2023-02-20").to appear_before("Good Friday: 2023-04-07")
+      expect("Good Friday: 2023-04-07").to appear_before("Memorial Day: 2023-05-29")
+    end
+  end
 end
