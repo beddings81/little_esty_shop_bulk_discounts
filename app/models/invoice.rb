@@ -16,7 +16,8 @@ class Invoice < ApplicationRecord
 
 
   def total_discount
-    invoice_items.joins(item: {merchant: :bulk_discounts})
+    self.invoice_items
+    .joins(item: {merchant: :bulk_discounts})
     .where('invoice_items.quantity >= bulk_discounts.quantity_threshold')
     .select('invoice_items.id, max(invoice_items.quantity * invoice_items.unit_price * (bulk_discounts.percent_discount / 100)) as total_discount')
     .group('invoice_items.id')
